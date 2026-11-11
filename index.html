@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Andreas Zamanos</title>
+<meta name="description" content="Andreas Zamanos, PhD candidate at the National and Kapodistrian University of Athens and Archimedes, Athena Research Center. Machine learning for structural biology: cryo-EM analysis, particle picking and protein hydration.">
+<meta name="author" content="Andreas Zamanos">
+<link rel="canonical" href="https://azamanos.github.io/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Andreas Zamanos">
+<meta property="og:description" content="Machine learning for structural biology: cryo-EM analysis, particle picking and protein hydration.">
+<meta property="og:url" content="https://azamanos.github.io/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Andreas Zamanos", "url": "https://azamanos.github.io/", "jobTitle": "PhD candidate", "affiliation": [{"@type": "CollegeOrUniversity", "name": "National and Kapodistrian University of Athens"}, {"@type": "Organization", "name": "Archimedes, Athena Research Center"}], "sameAs": ["https://scholar.google.com/citations?user=kRxhLHwAAAAJ", "https://github.com/azamanos", "https://www.linkedin.com/in/azamanos/", "https://archimedesai.gr/en/team/andreas-zamanos"]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Public+Sans:wght@400;500;600&display=swap">
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<style>
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark}}
+:root[data-theme="dark"]{color-scheme:dark}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+<style>
+/* Scholar: sticky identity sidebar beside one reading column */
+.tA{
+  --bg:#f6f8fa;--surface:#ffffff;--ink:#17212b;--muted:#586675;--line:#dbe3ea;--accent:#0a6883;--accent-soft:#e2f0f4;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  margin:0;min-height:100vh;background:var(--bg);color:var(--ink);
+  font:400 16px/1.65 var(--sans);-webkit-font-smoothing:antialiased;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tA{
+  --bg:#0f151b;--surface:#161e26;--ink:#e4ebf1;--muted:#93a2b0;--line:#27333e;--accent:#63c3dd;--accent-soft:#133340;
+}}
+:root[data-theme="dark"] .tA{
+  --bg:#0f151b;--surface:#161e26;--ink:#e4ebf1;--muted:#93a2b0;--line:#27333e;--accent:#63c3dd;--accent-soft:#133340;
+}
+.tA *,.tA *::before,.tA *::after{box-sizing:border-box}
+.tA a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px}
+.tA a:focus-visible,.tA button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+
+.a-shell{
+  max-width:1120px;margin:0 auto;display:grid;grid-template-columns:260px minmax(0,1fr);gap:72px;
+  padding-block:64px 48px;
+  padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px));
+}
+.a-side{position:sticky;top:48px;align-self:start;display:flex;flex-direction:column;gap:24px}
+.a-id{display:flex;flex-direction:column;gap:20px}
+.a-avatar{
+  width:120px;height:120px;border-radius:50%;flex:none;display:grid;place-items:center;
+  background:var(--accent-soft);color:var(--accent);border:1px solid var(--line);
+  font:500 42px/1 var(--serif);letter-spacing:.02em;position:relative;overflow:hidden;
+}
+.a-avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.a-name{font:500 31px/1.12 var(--serif);letter-spacing:-.01em;margin:0}
+.a-role{margin:8px 0 0;font-size:15px}
+.a-org{margin:2px 0 0;font-size:15px;color:var(--muted)}
+.a-links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:14.5px}
+.a-links a{display:inline-flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;overflow-wrap:anywhere}
+.a-links a:hover{color:var(--accent)}
+.a-links svg{width:16px;height:16px;flex:none;color:var(--muted)}
+.a-nav{display:flex;flex-direction:column;gap:8px;padding-top:24px;border-top:1px solid var(--line);font-size:14.5px}
+.a-nav a{color:var(--muted);text-decoration:none}
+.a-nav a:hover{color:var(--accent)}
+.a-theme{
+  align-self:flex-start;display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+  font:500 13px/1 var(--sans);color:var(--muted);background:transparent;
+  border:1px solid var(--line);border-radius:6px;padding:8px 10px;
+}
+.a-theme:hover{color:var(--accent);border-color:var(--accent)}
+.a-theme svg{width:14px;height:14px}
+
+.a-main{display:flex;flex-direction:column;gap:64px;min-width:0;max-width:700px}
+.a-main section{display:flex;flex-direction:column;gap:18px;scroll-margin-top:40px}
+.a-main h2{font:500 25px/1.2 var(--serif);margin:0;padding-bottom:12px;border-bottom:1px solid var(--line);text-wrap:balance}
+.a-main p{margin:0;text-wrap:pretty}
+.a-lead{font:400 21px/1.5 var(--serif)}
+.a-chips{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.a-chips li{font-size:13.5px;line-height:1.4;padding:5px 12px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+
+.a-list{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:28px}
+.a-item{display:grid;grid-template-columns:52px minmax(0,1fr);gap:20px}
+.a-year{font:500 14px/1.9 var(--sans);color:var(--muted);font-variant-numeric:tabular-nums}
+.a-body{display:flex;flex-direction:column;gap:6px;min-width:0}
+.a-title{font:500 19px/1.35 var(--serif);margin:0;text-wrap:balance}
+.a-title a{color:var(--ink);text-decoration:none}
+.a-title a:hover{color:var(--accent);text-decoration:underline}
+.a-kind{font:500 11.5px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.a-authors{font-size:14.5px;color:var(--muted)}
+.a-authors b{font-weight:600;color:var(--ink)}
+.a-venue{font-size:14.5px;font-style:italic}
+.a-desc{font-size:15.5px}
+.a-acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.tA .a-btn{
+  font-size:13px;font-weight:500;line-height:1.3;padding:4px 11px;border:1px solid var(--line);border-radius:6px;
+  background:var(--surface);color:var(--ink);text-decoration:none;
+}
+.tA .a-btn:hover{border-color:var(--accent);color:var(--accent)}
+.a-more{font-size:14.5px}
+.a-foot{padding-top:24px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+
+@media (max-width:860px){
+  .a-shell{grid-template-columns:minmax(0,1fr);gap:40px;padding-block:32px 40px}
+  .a-side{position:static;gap:20px}
+  .a-id{flex-direction:row;align-items:center}
+  .a-avatar{width:84px;height:84px;font-size:30px}
+  .a-name{font-size:27px}
+  .a-nav{flex-direction:row;flex-wrap:wrap;gap:8px 20px;padding-top:20px}
+  .a-main{gap:48px}
+  .a-lead{font-size:19.5px}
+  .a-item{grid-template-columns:44px minmax(0,1fr);gap:14px}
+}
+</style>
+</head>
+<body class="tA">
+<div class="a-shell">
+
+  <aside class="a-side">
+    <div class="a-id">
+      <!-- Photo: loaded from the Archimedes site. To host your own copy, save it as assets/photo.jpg and set src="assets/photo.jpg".
+           If the image cannot load, the initials behind it show instead. -->
+      <div class="a-avatar"><span aria-hidden="true">AZ</span><img src="assets/photo.jpg" alt="Portrait of Andreas Zamanos" width="500" height="500"></div>
+      <div>
+        <h1 class="a-name">Andreas Zamanos</h1>
+        <p class="a-role">PhD candidate</p>
+        <p class="a-org">National and Kapodistrian University of Athens</p>
+        <p class="a-org">Archimedes, Athena Research Center</p>
+      </div>
+    </div>
+
+    <ul class="a-links">
+      <li><a href="https://scholar.google.com/citations?user=kRxhLHwAAAAJ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5-10-5Z"/><path d="M6 11.5V16c0 1.2 2.7 2.5 6 2.5s6-1.3 6-2.5v-4.5"/><path d="M22 9v6"/></svg>Google Scholar</a></li>
+      <li><a href="https://github.com/azamanos"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/azamanos/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V17M8 7.2v.01M12 17v-6.5M12 13.5a2.2 2.2 0 0 1 4.4 0V17"/></svg>LinkedIn</a></li>
+      <li><a href="https://archimedesai.gr/en/team/andreas-zamanos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20.5h18M5 20.5V10M9.5 20.5V10M14.5 20.5V10M19 20.5V10M2.5 10 12 4l9.5 6Z"/></svg>Archimedes profile</a></li>
+      <li><a href="mailto:andreas.zamanos@athenarc.gr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>andreas.zamanos@athenarc.gr</a></li>
+    </ul>
+
+    <nav class="a-nav" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#publications">Publications</a>
+      <a href="#software">Software &amp; datasets</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="a-theme" type="button" data-theme-toggle aria-label="Switch between light and dark theme">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18Z" fill="currentColor"/></svg>
+      Theme
+    </button>
+  </aside>
+
+  <main class="a-main">
+
+    <section id="about">
+      <h2>About</h2>
+      <p class="a-lead">I work where deep learning meets structural biology, building methods that help scientists get from raw experimental data to molecular structure with less manual effort.</p>
+      <p>I am a PhD candidate at the National and Kapodistrian University of Athens, working with Archimedes at Athena Research Center. Most of my recent work is on cryo-electron microscopy: self-supervised models that pick particles out of noisy micrographs without hand-labelled data, and cryoPANDA, a dataset of 37 million particles from over 250 experiments. Before that I built HydraProt, a deep learning tool that predicts where water molecules sit around a protein. All of the code is open source.</p>
+      <ul class="a-chips" aria-label="Research interests">
+        <li>Cryo-EM analysis</li>
+        <li>Machine learning</li>
+        <li>Protein structures and dynamics</li>
+        <li>Self-supervised learning</li>
+      </ul>
+    </section>
+
+    <section id="publications">
+      <h2>Publications</h2>
+      <ol class="a-list">
+        <li class="a-item">
+          <span class="a-year">2026</span>
+          <div class="a-body">
+            <h3 class="a-title"><a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=kRxhLHwAAAAJ&amp;citation_for_view=kRxhLHwAAAAJ:UeHWp8X0CEIC">A 37-million-particle dataset from over 250 experiments to accelerate data-driven cryo-EM analysis</a></h3>
+            <span class="a-authors"><b>A. Zamanos</b>, F. L. Kyrilis, P. Koromilas, P. L. Kastritis, Y. Panagakis</span>
+            <span class="a-venue">bioRxiv 2026.04.29.720997 (preprint)</span>
+            <div class="a-acts">
+              <a class="a-btn" href="https://github.com/azamanos/cryoPANDA">Code</a>
+              <a class="a-btn" href="https://doi.org/10.57760/sciencedb.27164">Data</a>
+            </div>
+          </div>
+        </li>
+        <li class="a-item">
+          <span class="a-year">2025</span>
+          <div class="a-body">
+            <h3 class="a-title"><a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=kRxhLHwAAAAJ&amp;citation_for_view=kRxhLHwAAAAJ:qjMakFHDy7sC">Self-supervised learning for generalizable particle picking in cryo-EM micrographs</a></h3>
+            <span class="a-authors"><b>A. Zamanos</b>, P. Koromilas, G. Bouritsas, P. L. Kastritis, Y. Panagakis</span>
+            <span class="a-venue">Cell Reports Methods, 5(7)</span>
+            <div class="a-acts">
+              <a class="a-btn" href="https://github.com/azamanos/Cryo-EMMAE">Code</a>
+              <a class="a-btn" href="https://doi.org/10.5281/zenodo.11659477">Data &amp; checkpoints</a>
+            </div>
+          </div>
+        </li>
+        <li class="a-item">
+          <span class="a-year">2024</span>
+          <div class="a-body">
+            <h3 class="a-title"><a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=kRxhLHwAAAAJ&amp;citation_for_view=kRxhLHwAAAAJ:9yKSN-GCB0IC">Towards generalizable particle picking in cryo-EM images by leveraging masked autoencoder</a></h3>
+            <span class="a-authors"><b>A. Zamanos</b>, P. Koromilas, G. Bouritsas, P. L. Kastritis, Y. Panagakis</span>
+            <span class="a-venue">ICML 2024 Workshop on Efficient and Accessible Foundation Models for Biological Discovery</span>
+            <div class="a-acts">
+              <a class="a-btn" href="https://github.com/azamanos/Cryo-EMMAE">Code</a>
+            </div>
+          </div>
+        </li>
+        <li class="a-item">
+          <span class="a-year">2024</span>
+          <div class="a-body">
+            <h3 class="a-title"><a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=kRxhLHwAAAAJ&amp;citation_for_view=kRxhLHwAAAAJ:d1gkVwhDpl0C">HydraProt: A new deep learning tool for fast and accurate prediction of water molecule positions for protein structures</a></h3>
+            <span class="a-authors"><b>A. Zamanos</b>, G. Ioannakis, I. Z. Emiris</span>
+            <span class="a-venue">Journal of Chemical Information and Modeling, 64(7), 2594</span>
+            <div class="a-acts">
+              <a class="a-btn" href="https://github.com/azamanos/HydraProt">Code</a>
+              <a class="a-btn" href="https://doi.org/10.5281/zenodo.10517963">Data &amp; checkpoints</a>
+            </div>
+          </div>
+        </li>
+        <!-- Add a publication by copying one <li class="a-item"> block above. -->
+      </ol>
+      <p class="a-more"><a href="https://scholar.google.com/citations?user=kRxhLHwAAAAJ">Full list and citations on Google Scholar</a></p>
+    </section>
+
+    <section id="software">
+      <h2>Software &amp; datasets</h2>
+      <ul class="a-list">
+        <li class="a-item">
+          <span class="a-year">2026</span>
+          <div class="a-body">
+            <span class="a-kind">Dataset</span>
+            <h3 class="a-title"><a href="https://github.com/azamanos/cryoPANDA">cryoPANDA</a></h3>
+            <p class="a-desc">A benchmark dataset of over 37 million particles from 252 cryo-EM experiments, with notebooks for curation, linear probing and DINOv2 feature analysis.</p>
+            <div class="a-acts">
+              <a class="a-btn" href="https://github.com/azamanos/cryoPANDA">Code</a>
+              <a class="a-btn" href="https://doi.org/10.57760/sciencedb.27164">Data</a>
+            </div>
+          </div>
+        </li>
+        <li class="a-item">
+          <span class="a-year">2025</span>
+          <div class="a-body">
+            <span class="a-kind">Method</span>
+            <h3 class="a-title"><a href="https://github.com/azamanos/Cryo-EMMAE">Cryo-EMMAE</a></h3>
+            <p class="a-desc">Self-supervised particle picking for cryo-EM. A masked autoencoder maps each micrograph to a representation space where clustering separates particles from noise, with no manual annotation.</p>
+            <div class="a-acts">
+              <a class="a-btn" href="https://github.com/azamanos/Cryo-EMMAE">Code</a>
+              <a class="a-btn" href="https://doi.org/10.5281/zenodo.11659477">Data &amp; checkpoints</a>
+            </div>
+          </div>
+        </li>
+        <li class="a-item">
+          <span class="a-year">2025</span>
+          <div class="a-body">
+            <span class="a-kind">Analysis</span>
+            <h3 class="a-title"><a href="https://github.com/azamanos/Amino-Acid-Propensities_APP">Amino acid propensities</a></h3>
+            <p class="a-desc">Helix, strand and loop propensities for each amino acid, computed from high-resolution PDB structures of soluble and membrane proteins using DSSP and MMseqs2.</p>
+            <div class="a-acts">
+              <a class="a-btn" href="https://github.com/azamanos/Amino-Acid-Propensities_APP">Code</a>
+            </div>
+          </div>
+        </li>
+        <li class="a-item">
+          <span class="a-year">2024</span>
+          <div class="a-body">
+            <span class="a-kind">Tool</span>
+            <h3 class="a-title"><a href="https://github.com/azamanos/HydraProt">HydraProt</a></h3>
+            <p class="a-desc">Fast, accurate prediction of explicit water positions in protein structures. A 3D U-Net samples candidate waters and an MLP scores them. Reads PDB and CIF files.</p>
+            <div class="a-acts">
+              <a class="a-btn" href="https://github.com/azamanos/HydraProt">Code</a>
+              <a class="a-btn" href="https://doi.org/10.5281/zenodo.10517963">Data &amp; checkpoints</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>For questions about the code or data, or to talk about a collaboration, write to <a href="mailto:andreas.zamanos@athenarc.gr">andreas.zamanos@athenarc.gr</a>. Bug reports and feature requests are best opened as issues on the relevant <a href="https://github.com/azamanos">GitHub repository</a>.</p>
+    </section>
+
+    <footer class="a-foot">© 2026 Andreas Zamanos</footer>
+  </main>
+
+</div>
+<script>
+function initTheme(root){
+  var btn=root.querySelector('[data-theme-toggle]');if(!btn)return;
+  btn.addEventListener('click',function(){
+    var de=document.documentElement;
+    var cur=de.getAttribute('data-theme')||(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    var next=cur==='dark'?'light':'dark';
+    de.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next)}catch(e){}
+  });
+}
+function initAvatar(root){
+  var img=root.querySelector('.a-avatar img');if(!img)return;
+  function drop(){if(img.parentNode)img.parentNode.removeChild(img)}
+  if(img.complete&&!img.naturalWidth)drop();else img.addEventListener('error',drop);
+}
+initTheme(document.querySelector('.tA'));
+initAvatar(document.querySelector('.tA'));
+</script>
+</body>
+</html>
